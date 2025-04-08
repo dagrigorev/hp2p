@@ -1,0 +1,16 @@
+namespace p2p;
+
+enum MessageType : byte {
+  HELLO,
+  PING,
+  CHAT,
+  METRIC_WARNING
+}
+
+table Message {
+  sender_id: string;
+  type: MessageType;
+  payload: string;
+}
+
+root_type Message;
