@@ -1,4 +1,4 @@
-namespace p2p;
+namespace hp2p;
 
 enum MessageType : byte {
   HELLO,

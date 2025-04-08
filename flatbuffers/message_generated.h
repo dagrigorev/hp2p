@@ -13,7 +13,7 @@ static_assert(FLATBUFFERS_VERSION_MAJOR == 25 &&
               FLATBUFFERS_VERSION_REVISION == 10,
              "Non-compatible flatbuffers version included");
 
-namespace p2p {
+namespace hp2p {
 
 struct Message;
 struct MessageBuilder;
@@ -64,8 +64,8 @@ struct Message FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   const ::flatbuffers::String *sender_id() const {
     return GetPointer<const ::flatbuffers::String *>(VT_SENDER_ID);
   }
-  p2p::MessageType type() const {
-    return static_cast<p2p::MessageType>(GetField<int8_t>(VT_TYPE, 0));
+  hp2p::MessageType type() const {
+    return static_cast<hp2p::MessageType>(GetField<int8_t>(VT_TYPE, 0));
   }
   const ::flatbuffers::String *payload() const {
     return GetPointer<const ::flatbuffers::String *>(VT_PAYLOAD);
@@ -88,7 +88,7 @@ struct MessageBuilder {
   void add_sender_id(::flatbuffers::Offset<::flatbuffers::String> sender_id) {
     fbb_.AddOffset(Message::VT_SENDER_ID, sender_id);
   }
-  void add_type(p2p::MessageType type) {
+  void add_type(hp2p::MessageType type) {
     fbb_.AddElement<int8_t>(Message::VT_TYPE, static_cast<int8_t>(type), 0);
   }
   void add_payload(::flatbuffers::Offset<::flatbuffers::String> payload) {
@@ -108,7 +108,7 @@ struct MessageBuilder {
 inline ::flatbuffers::Offset<Message> CreateMessage(
     ::flatbuffers::FlatBufferBuilder &_fbb,
     ::flatbuffers::Offset<::flatbuffers::String> sender_id = 0,
-    p2p::MessageType type = p2p::MessageType_HELLO,
+    hp2p::MessageType type = hp2p::MessageType_HELLO,
     ::flatbuffers::Offset<::flatbuffers::String> payload = 0) {
   MessageBuilder builder_(_fbb);
   builder_.add_payload(payload);
@@ -120,44 +120,44 @@ inline ::flatbuffers::Offset<Message> CreateMessage(
 inline ::flatbuffers::Offset<Message> CreateMessageDirect(
     ::flatbuffers::FlatBufferBuilder &_fbb,
     const char *sender_id = nullptr,
-    p2p::MessageType type = p2p::MessageType_HELLO,
+    hp2p::MessageType type = hp2p::MessageType_HELLO,
     const char *payload = nullptr) {
   auto sender_id__ = sender_id ? _fbb.CreateString(sender_id) : 0;
   auto payload__ = payload ? _fbb.CreateString(payload) : 0;
-  return p2p::CreateMessage(
+  return hp2p::CreateMessage(
       _fbb,
       sender_id__,
       type,
       payload__);
 }
 
-inline const p2p::Message *GetMessage(const void *buf) {
-  return ::flatbuffers::GetRoot<p2p::Message>(buf);
+inline const hp2p::Message *GetMessage(const void *buf) {
+  return ::flatbuffers::GetRoot<hp2p::Message>(buf);
 }
 
-inline const p2p::Message *GetSizePrefixedMessage(const void *buf) {
-  return ::flatbuffers::GetSizePrefixedRoot<p2p::Message>(buf);
+inline const hp2p::Message *GetSizePrefixedMessage(const void *buf) {
+  return ::flatbuffers::GetSizePrefixedRoot<hp2p::Message>(buf);
 }
 
 inline bool VerifyMessageBuffer(
     ::flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<p2p::Message>(nullptr);
+  return verifier.VerifyBuffer<hp2p::Message>(nullptr);
 }
 
 inline bool VerifySizePrefixedMessageBuffer(
     ::flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<p2p::Message>(nullptr);
+  return verifier.VerifySizePrefixedBuffer<hp2p::Message>(nullptr);
 }
 
 inline void FinishMessageBuffer(
     ::flatbuffers::FlatBufferBuilder &fbb,
-    ::flatbuffers::Offset<p2p::Message> root) {
+    ::flatbuffers::Offset<hp2p::Message> root) {
   fbb.Finish(root);
 }
 
 inline void FinishSizePrefixedMessageBuffer(
     ::flatbuffers::FlatBufferBuilder &fbb,
-    ::flatbuffers::Offset<p2p::Message> root) {
+    ::flatbuffers::Offset<hp2p::Message> root) {
   fbb.FinishSizePrefixed(root);
 }
 

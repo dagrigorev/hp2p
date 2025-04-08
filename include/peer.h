@@ -19,6 +19,12 @@ private:
 	bool InitSocket();
 	void WorkerThread();
 
+	void AcceptThread();
+	void BeginReceive(SOCKET client);
+
+	std::thread acceptThread;
+	std::vector<SOCKET> clients;
+
 	HANDLE iocp = INVALID_HANDLE_VALUE;
 	SOCKET listenSocket = INVALID_SOCKET;
 	std::thread worker;
@@ -26,7 +32,7 @@ private:
 };
 
 // Per-connection context
-struct PerIOConnect {
+struct PerIOContext {
 	OVERLAPPED overlapped{};
 	WSABUF wsabuf{};
 	char buffer[1024];

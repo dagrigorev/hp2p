@@ -14,7 +14,7 @@ int main()
 		return -1;
 	}
 
-	std::cout << "Peer started. Press enter to exit...\n";
+	std::cout << "Peer started.\nPress enter to exit...\n";
 	std::cin.get();
 
 	p.Stop();

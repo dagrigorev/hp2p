@@ -15,6 +15,9 @@ project ("hp2p")
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_definitions(-DNOMINMAX)
+add_definitions(-_WINSOCK_DEPRECATED_NO_WARNINGS)
+
 # Optional: Multi-core build flags for MSVC
 if (MSVC)
     add_compile_options(/MP)
